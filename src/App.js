@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { getRandomWord } from './words';
+import WordToWin from './WordToWin';
+import Graveyard from './Graveyard';
+import WinnerChickenDinner from './WinnerChickenDinner';
 
 function App() {
+  const [word, setWord] = useState('') 
+
+  useEffect(() => {
+    setWord(getRandomWord())
+  }, [] ); // [] (if empty array) componentDidMount
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <WordToWin word={word}/>
+      <Graveyard />
+      <WinnerChickenDinner />
     </div>
   );
 }
